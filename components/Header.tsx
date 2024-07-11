@@ -24,10 +24,10 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleStickyHeader);
   });
   return (
-    <header className="py-8 xl:py-12 sticky top-0 z-30 ">
+    <header className="py-8 xl:py-8 sticky top-0 z-30 ">
       <div className="container mx-auto flex justify-between items-center">
         <Link href={"/"}>
-          <h1 className="text-4xl font-semibold">
+          <h1 className="text-4xl font-semibold text-yellow-600">
             BlooCodeTech<span className="text-accent">.</span>
           </h1>
         </Link>

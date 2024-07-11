@@ -1,7 +1,5 @@
 "use client";
 import Ads from "@/components/Ads";
-import axios from "axios";
-import { Anybody } from "next/font/google";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -11,14 +9,15 @@ interface Product {
   price: number;
   thumbnail: string;
   id: number;
+  category: String;
   // Add other properties as per your actual API response
 }
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [groceriesProducts, setGroceriesProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [randomProducts, setRandomProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -34,31 +33,25 @@ export default function Home() {
     };
     fetchProducts();
   }, []);
-  useEffect(() => {
-        if (products.length > 0) {
-      const shuffleArray = (products: any) => {
-        for (let i = products.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [products[i], products[j]] = [products[j], products[i]];
-        }
-        return products;
-      };
 
-      const shuffledProducts = shuffleArray([...products]);
-      const selectedProducts = shuffledProducts.slice(0, 8);
-      setRandomProducts(selectedProducts);
+  useEffect(() => {
+    if (products.length > 0) {
+      const groceries = products.filter(
+        (grocery) => grocery.category === "groceries"
+      );
+      setGroceriesProducts(groceries);
     }
   }, [products]);
 
   return (
     <main className=" container">
-      <div className="">
+      {/* <div className="">
         <Ads />
-      </div>
+      </div> */}
       <div className="flex  flex-col gap-[100px] justify-center items-center mb-20">
-        <p className="text-5xl font-semibold">Featured Products</p>
+        {/* <p className="text-4xl font-semibold">Beauty</p> */}
         <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 ">
-          {randomProducts.map((product: Product) => (
+          {groceriesProducts.map((product: Product) => (
             <div key={product.id} className="">
               <Link href={""}>
                 <li className=" bg-gray-200 rounded-lg">

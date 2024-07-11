@@ -12,11 +12,11 @@ const MobileNav = () => {
     },
     {
       name: "Furnitures",
-      path: "",
+      path: "/furnitures",
     },
     {
       name: "Beauty",
-      path: "/work",
+      path: "/beauty",
     },
     {
       name: "Fragrances",
@@ -49,8 +49,8 @@ const MobileNav = () => {
                 key={index}
                 className={`${
                   link.path === pathName &&
-                  "text-accent border-b-2 border-accent"
-                } text-xl capitalize hover:text-accent transition-all `}
+                  "text-yellow-600 border-b-2 border-yellow-600"
+                } text-xl capitalize hover:text-yellow-600 transition-all `}
               >
                 {link.name}
               </Link>

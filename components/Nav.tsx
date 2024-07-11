@@ -6,25 +6,25 @@ import { usePathname } from "next/navigation";
 const Nav = () => {
   const links = [
     {
-        name: "Home",
-        path: "/",
-      },
-      {
-        name: "Furnitures",
-        path: "",
-      },
-      {
-        name: "Beauty",
-        path: "/work",
-      },
-      {
-        name: "Fragrances",
-        path: "/resume",
-      },
-      {
-        name: "Groceries",
-        path: "/contact",
-      },
+      name: "Home",
+      path: "/",
+    },
+    {
+      name: "Furnitures",
+      path: "/furnitures",
+    },
+    {
+      name: "Beauty",
+      path: "/beauty",
+    },
+    {
+      name: "Fragrances",
+      path: "/fragrances",
+    },
+    {
+      name: "Groceries",
+      path: "/groceries",
+    },
   ];
   const pathName = usePathname();
   return (
@@ -34,10 +34,10 @@ const Nav = () => {
           <Link
             href={link.path}
             key={index}
-
             className={`${
-              link.path === pathName && "text-accent border-b-2 border-accent"
-            } capitalize font-medium hover:text-accent transition-all font-bold`}
+              link.path === pathName &&
+              "text-yellow-600 border-b-2 border-yellow-600"
+            } capitalize  hover:text-yellow-600 transition-all font-semibold text-lg`}
           >
             {" "}
             {link.name}{" "}
