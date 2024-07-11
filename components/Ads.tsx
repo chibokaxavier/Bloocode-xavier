@@ -7,8 +7,8 @@ import { CiDollar } from "react-icons/ci";
 const Ads = () => {
   return (
     <div className="my-[80px]">
-      <div className="flex justify-between gap-10">
-        <div className="flex flex-col gap-2 max-w-[300px]">
+      <div className="flex xl:flex-row flex-col justify-between gap-10">
+        <div className="flex flex-col gap-2 xl:max-w-[300px]">
           <BsCart4 className="text-4xl" />
           <p className="text-lg font-bold">Free Delivery</p>
           <p className="text-base">

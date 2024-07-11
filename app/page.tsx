@@ -2,6 +2,7 @@
 import Ads from "@/components/Ads";
 import axios from "axios";
 import { Anybody } from "next/font/google";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface Product {
@@ -55,20 +56,24 @@ export default function Home() {
       <div className="">
         <Ads />
       </div>
-      <div className="flex  flex-col gap-[100px] justify-center items-center">
+      <div className="flex  flex-col gap-[100px] justify-center items-center mb-20">
         <p className="text-5xl font-semibold">Featured Products</p>
-        <ul className="grid grid-cols-4 gap-4">
+        <ul className="grid grid-cols-1 xl:grid-cols-4 gap-4">
           {randomProducts.map((product: Product) => (
             <div key={product.id} className="">
-              <li className=" bg-gray-200">
-                <img src={product.thumbnail} alt={product.title} />
-              </li>
-              <div className="flex justify-between pt-5">
-                <h2 className="text-xl font-bold leading-6">{product.title}</h2>{" "}
-                <p className="text-gray-500 font-light">
-                  Price: ${product.price}
-                </p>
-              </div>
+              <Link href={""}>
+                <li className=" bg-gray-200">
+                  <img src={product.thumbnail} alt={product.title} />
+                </li>
+                <div className="flex justify-between pt-5">
+                  <h2 className="text-xl font-bold leading-6">
+                    {product.title}
+                  </h2>{" "}
+                  <p className="text-gray-500 font-light">
+                    Price: ${product.price}
+                  </p>
+                </div>
+              </Link>
             </div>
           ))}
         </ul>
