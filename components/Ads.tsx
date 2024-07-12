@@ -9,8 +9,8 @@ const Ads = () => {
     <div className="my-[80px]">
       <div className="flex xl:grid-cols-4  md:grid md:grid-cols-2 flex-col justify-between gap-10">
         <div className="flex flex-col gap-2 xl:max-w-[300px]">
-          <BsCart4 className="text-4xl" />
-          <p className="text-lg font-bold">Free Delivery</p>
+          <BsCart4 className="text-4xl text-yellow-600" />
+          <p className="text-lg font-bold text-yellow-600">Free Delivery</p>
           <p className="text-base">
             Shop a wide range of high-quality products, from fashion to
             electronics. Enjoy Free Delivery on all orders.
@@ -18,8 +18,10 @@ const Ads = () => {
         </div>
         <div className="flex flex-col gap-2 max-w-[300px]">
           {" "}
-          <RiPoliceBadgeLine className="text-4xl" />
-          <p className="text-lg font-bold">100% Secure Payment</p>
+          <RiPoliceBadgeLine className="text-4xl text-yellow-600" />
+          <p className="text-lg font-bold text-yellow-600">
+            100% Secure Payment
+          </p>
           <p className="text-base">
             Enjoy 100% Secure Payment on all orders. Shop with confidence,
             knowing your transactions are safe and protected!
@@ -27,8 +29,8 @@ const Ads = () => {
         </div>
         <div className="flex flex-col gap-2 max-w-[300px]">
           {" "}
-          <IoRibbonOutline className="text-4xl" />
-          <p className="text-lg font-bold">Quality Guarantee</p>
+          <IoRibbonOutline className="text-4xl text-yellow-600" />
+          <p className="text-lg font-bold text-yellow-600">Quality Guarantee</p>
           <p>
             Enjoy our Quality Guarantee on all orders. Shop with confidence,
             knowing every item meets the highest standards!
@@ -36,8 +38,8 @@ const Ads = () => {
         </div>
         <div className="flex flex-col gap-2 max-w-[300px]">
           {" "}
-          <CiDollar className="text-4xl" />
-          <p className=" text-lg font-bold">Daily offer</p>
+          <CiDollar className="text-4xl text-yellow-600" />
+          <p className=" text-lg font-bold text-yellow-600">Daily offer</p>
           <p>Don't miss out on exclusive deals every day!</p>
         </div>
       </div>

@@ -35,7 +35,7 @@ export default function Home() {
     fetchProducts();
   }, []);
   useEffect(() => {
-        if (products.length > 0) {
+    if (products.length > 0) {
       const shuffleArray = (products: any) => {
         for (let i = products.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -69,13 +69,14 @@ export default function Home() {
                     {product.title}
                   </h2>{" "}
                   <p className="text-gray-500 font-light">
-                    Price: ${product.price}
+                    Price:${product.price}
                   </p>
                 </div>
               </Link>
             </div>
           ))}
         </ul>
+        <button className="bg-black text-white p-4 rounded-lg shadow-2xl w-[250px] h-[60px]">View all products</button>
       </div>
     </main>
   );

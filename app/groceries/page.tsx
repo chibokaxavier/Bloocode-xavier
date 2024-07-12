@@ -50,7 +50,7 @@ export default function Home() {
       </div> */}
       <div className="flex  flex-col gap-[100px] justify-center items-center mb-20">
         {/* <p className="text-4xl font-semibold">Beauty</p> */}
-        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 ">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
           {groceriesProducts.map((product: Product) => (
             <div key={product.id} className="">
               <Link href={""}>
@@ -62,7 +62,7 @@ export default function Home() {
                     {product.title}
                   </h2>{" "}
                   <p className="text-gray-500 font-light">
-                    Price: ${product.price}
+                    Price:${product.price}
                   </p>
                 </div>
               </Link>

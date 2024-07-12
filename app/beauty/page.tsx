@@ -48,19 +48,19 @@ export default function Home() {
       </div> */}
       <div className="flex  flex-col gap-[100px] justify-center items-center mb-20">
         {/* <p className="text-4xl font-semibold">Beauty</p> */}
-        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 ">
+        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 gap-4 ">
           {beautyProducts.map((product: Product) => (
             <div key={product.id} className="">
               <Link href={""}>
                 <li className=" bg-gray-200 rounded-lg">
                   <img src={product.thumbnail} alt={product.title} />
                 </li>
-                <div className="flex justify-between pt-5">
+                <div className="flex justify-between gap-5 pt-5">
                   <h2 className="text-xl font-bold leading-6">
                     {product.title}
                   </h2>{" "}
                   <p className="text-gray-500 font-light">
-                    Price: ${product.price}
+                    Price:${product.price}
                   </p>
                 </div>
               </Link>

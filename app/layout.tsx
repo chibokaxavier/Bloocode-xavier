@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Cinzel } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 // import PageTransition from "@/components/PageTransition";
 // import StairTransition from "@/components/StairTransition";
 import Head from "next/head";
+import Footer from "@/components/Footer";
 
-const jetBrainsMono = Cinzel({
+const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400","500","600", "700"],
-  variable: "--font-jetbrainsMono",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-jetsBrainMono",
 });
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({
         {/* <StairTransition /> */}
         {/* <PageTransition>{children}</PageTransition> */}
         {children}
+        <Footer />
       </body>
     </html>
   );

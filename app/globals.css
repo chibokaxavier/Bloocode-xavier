@@ -14,4 +14,7 @@
     z-index: 9999;
     box-shadow: 3px 3px -8px 3px #ddd;
   }
+  body {
+    font-family: var(--font-jetsBrainMono);
+  }
 }
