@@ -23,7 +23,13 @@ interface Product {
   shippingInformation: String;
   returnPolicy: String;
   minimumOrderQuantity: String;
-  // Add other properties as per your actual API response
+  reviews: [];
+}
+interface Review {
+  rating: number;
+  comment: String;
+  date: String;
+  reviewerName: String;
 }
 
 export default function Home({ params }: { params: { id: String } }) {
@@ -80,6 +86,26 @@ export default function Home({ params }: { params: { id: String } }) {
       </>
     );
   };
+  const renderReviewStars = (rating: any) => {
+    const totalStars = 5;
+    const fullStars = Math.floor(rating);
+    const emptyStars = totalStars - fullStars;
+
+    return (
+      <>
+        {Array.from({ length: fullStars }, (_, index) => (
+          <span key={`full-${index}`} className="text-3xl">
+            &#9733;
+          </span> // &#9733; is the HTML entity for a filled star
+        ))}
+        {Array.from({ length: emptyStars }, (_, index) => (
+          <span key={`empty-${index}`} className="text-3xl">
+            &#9734;
+          </span> // &#9734; is the HTML entity for an empty star
+        ))}
+      </>
+    );
+  };
   useEffect(() => {
     const calcPrice = () => {
       if (
@@ -88,9 +114,9 @@ export default function Home({ params }: { params: { id: String } }) {
       ) {
         const discount = (beauty?.discountPercentage / 100) * beauty?.price;
         const mainPrice = beauty?.price - discount;
-        setPrice(mainPrice.toFixed(2));
+        setPrice(Math.round((mainPrice + Number.EPSILON) * 100) / 100);
       } else if (beauty?.price !== undefined) {
-        setPrice(beauty?.price);
+        setPrice(Math.round((beauty.price + Number.EPSILON) * 100) / 100);
       }
     };
     calcPrice();
@@ -155,14 +181,14 @@ export default function Home({ params }: { params: { id: String } }) {
             <p className="font-bold">
               SKU: <span className="font-normal capitalize">{beauty?.sku}</span>
             </p>
-            <p className="font-bold">
+            <div className="font-bold flex">
               Tags:{" "}
-              <span className="font-normal capitalize">
-                {beauty?.tags.map((tag) => {
+              <p className="font-normal capitalize flex">
+                {beauty?.tags?.map((tag) => {
                   return <span>{tag}, </span>;
                 })}
-              </span>
-            </p>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -220,13 +246,33 @@ export default function Home({ params }: { params: { id: String } }) {
               <div className="flex flex-col  gap-[30px]">
                 <div className="flex flex-col gap-[30px] text-center xl:text-left">
                   <h3 className="text-4xl font-bold">Reviews</h3>
-                  <div className="flex mx-auto xl:mx-0 text-black">
-                    <div>img</div>
+                  <div className=" mx-auto xl:mx-0 text-black">
                     <div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
+                      <div className="flex space-x-10">
+                        {beauty?.reviews.map((review: Review, index) => {
+                          return (
+                            <div key={index}>
+                              <div>
+                                {renderReviewStars(review.rating)}
+                                <span className="text-xl">
+                                  ({review.rating})
+                                </span>
+                              </div>
+                              <div className="text-xl">
+                                {review.reviewerName}-{" "}
+                                <span className="text-xs text-gray-400">
+                                  {review.date}
+                                </span>
+                              </div>
+                              <div className="text-gray-600 text-base">
+                                {review.comment}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
+                    <div></div>
                   </div>
                 </div>
               </div>
