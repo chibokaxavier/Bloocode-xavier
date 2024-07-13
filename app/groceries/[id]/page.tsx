@@ -190,8 +190,8 @@ export default function Home({ params }: { params: { id: String } }) {
             <div className="font-bold text-center items-center justify-center xl:justify-start flex">
               Tags:{" "}
               <p className="font-normal capitalize flex">
-                {groceries?.tags?.map((tag) => {
-                  return <span>{tag}, </span>;
+                {groceries?.tags?.map((tag,index) => {
+                  return <span key={index}>{tag}, </span>;
                 })}
               </p>
             </div>

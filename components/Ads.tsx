@@ -40,7 +40,7 @@ const Ads = () => {
           {" "}
           <CiDollar className="text-4xl text-yellow-600" />
           <p className=" text-lg font-bold text-yellow-600">Daily offer</p>
-          <p>Don't miss out on exclusive deals every day!</p>
+          <p>You do not want to miss out on exclusive deals every day!</p>
         </div>
       </div>
     </div>

@@ -189,8 +189,8 @@ export default function Home({ params }: { params: { id: String } }) {
             <div className="font-bold text-center items-center justify-center xl:justify-start flex">
               Tags:{" "}
               <p className="font-normal capitalize flex">
-                {beauty?.tags?.map((tag) => {
-                  return <span>{tag}, </span>;
+                {beauty?.tags?.map((tag,index) => {
+                  return <span key={index} >{tag}, </span>;
                 })}
               </p>
             </div>
