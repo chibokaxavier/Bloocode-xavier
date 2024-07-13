@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoIosHeart } from "react-icons/io";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import axios from "axios";
 
 interface Product {
@@ -34,8 +35,8 @@ interface Review {
 
 export default function Home({ params }: { params: { id: String } }) {
   const [products, setProducts] = useState<Product[]>([]);
-  const [beauty, setBeauty] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [furniture, setFurniture] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [price, setPrice] = useState(0);
 
@@ -56,10 +57,10 @@ export default function Home({ params }: { params: { id: String } }) {
 
   useEffect(() => {
     if (products.length > 0) {
-      const beautyProduct = products.find(
+      const furnitureProduct = products.find(
         (item) => item.id.toLocaleString() === params.id
       );
-      setBeauty(beautyProduct || null);
+      setFurniture(furnitureProduct || null);
     }
   }, [products, params.id]);
 
@@ -106,19 +107,19 @@ export default function Home({ params }: { params: { id: String } }) {
   useEffect(() => {
     const calcPrice = () => {
       if (
-        beauty?.discountPercentage !== undefined &&
-        beauty?.price !== undefined
+        furniture?.discountPercentage !== undefined &&
+        furniture?.price !== undefined
       ) {
         const discount =
-          (beauty?.discountPercentage / 100) * beauty?.price;
-        const mainPrice = beauty?.price - discount;
+          (furniture?.discountPercentage / 100) * furniture?.price;
+        const mainPrice = furniture?.price - discount;
         setPrice(Math.round((mainPrice + Number.EPSILON) * 100) / 100);
-      } else if (beauty?.price !== undefined) {
-        setPrice(Math.round((beauty.price + Number.EPSILON) * 100) / 100);
+      } else if (furniture?.price !== undefined) {
+        setPrice(Math.round((furniture.price + Number.EPSILON) * 100) / 100);
       }
     };
     calcPrice();
-  }, [beauty]);
+  }, [furniture]);
 
   return (
     <main className="  ">
@@ -126,32 +127,32 @@ export default function Home({ params }: { params: { id: String } }) {
         <div className="flex xl:flex-row flex-col gap-10">
           <div className=" bg-gray-200 rounded-lg w-[350px] xl:w-fit mx-auto flex xl:flex-col xl:justify-start xl:items-start justify-center items-center xl:h-fit ">
             <div className="text-black mt-5 mx-5  ">
-              .{beauty?.availabilityStatus}
+              .{furniture?.availabilityStatus}
             </div>
 
             <img
-              src={beauty?.thumbnail}
-              alt={beauty?.title}
+              src={furniture?.thumbnail}
+              alt={furniture?.title}
               className="xl:h-[500px] xl:w-[450px] w-[225px]"
             />
           </div>
           <div className="flex flex-col text-center xl:text-left px-10 gap-5 pt-5">
             <h2 className="text-4xl font-bold leading-10 ">
-              {beauty?.title}
+              {furniture?.title}
             </h2>{" "}
             <div className="text-base">
-              {renderStars(beauty?.rating)} {beauty?.rating}
+              {renderStars(furniture?.rating)} {furniture?.rating}
             </div>
             <p className="  text-black font-light text-3xl ">
               <span className="mr-4">${price}</span>
               <span className="line-through text-xl text-gray-500">
-                ${beauty?.price}
+                ${furniture?.price}
               </span>{" "}
             </p>
             <p className="text-gray-600 max-w-[800px]">
-              {beauty?.description}
+              {furniture?.description}
             </p>
-            <p>{beauty?.stock} in stock</p>
+            <p>{furniture?.stock} in stock</p>
             <div className="flex xl:flex-row flex-col gap-2  items-center ">
               <div className="flex justify-center items-center gap-2">
                 {" "}
@@ -175,21 +176,21 @@ export default function Home({ params }: { params: { id: String } }) {
             <p className="font-bold">
               Category:{" "}
               <span className="font-normal capitalize">
-                {beauty?.category}
+                {furniture?.category}
               </span>
             </p>
             <p className="font-bold">
               Brand:{" "}
-              <span className="font-normal capitalize">{beauty?.brand}</span>
+              <span className="font-normal capitalize">{furniture?.brand}</span>
             </p>
             <p className="font-bold">
               SKU:{" "}
-              <span className="font-normal capitalize">{beauty?.sku}</span>
+              <span className="font-normal capitalize">{furniture?.sku}</span>
             </p>
             <div className="font-bold text-center items-center justify-center xl:justify-start flex">
               Tags:{" "}
               <p className="font-normal capitalize flex">
-                {beauty?.tags?.map((tag) => {
+                {furniture?.tags?.map((tag) => {
                   return <span>{tag}, </span>;
                 })}
               </p>
@@ -218,31 +219,31 @@ export default function Home({ params }: { params: { id: String } }) {
                     <li className="font-bold">
                       Availabilty Status:{" "}
                       <span className="font-light">
-                        {beauty?.availabilityStatus}
+                        {furniture?.availabilityStatus}
                       </span>
                     </li>
                     <li className="font-bold">
                       Warranty Information:{" "}
                       <span className="font-light">
-                        {beauty?.warrantyInformation}
+                        {furniture?.warrantyInformation}
                       </span>
                     </li>
                     <li className="font-bold">
                       Shipping Information:
                       <span className="font-light">
-                        {beauty?.shippingInformation}
+                        {furniture?.shippingInformation}
                       </span>
                     </li>
                     <li className="font-bold">
                       Return policy:
                       <span className="font-light">
-                        {beauty?.returnPolicy}
+                        {furniture?.returnPolicy}
                       </span>
                     </li>
                     <li className="font-bold">
                       Minimum Order Quantity :
                       <span className="font-light">
-                        {beauty?.minimumOrderQuantity}
+                        {furniture?.minimumOrderQuantity}
                       </span>
                     </li>
                   </ul>
@@ -256,7 +257,7 @@ export default function Home({ params }: { params: { id: String } }) {
                   <div className=" mx-auto xl:mx-0 text-black">
                     <div>
                       <div className=" grid xl:grid-cols-3 grid-cols-1 gap-4 xl:space-x-10">
-                        {beauty?.reviews.map((review: Review, index) => {
+                        {furniture?.reviews.map((review: Review, index) => {
                           return (
                             <div key={index}>
                               <div>

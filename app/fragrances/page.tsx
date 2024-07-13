@@ -1,5 +1,6 @@
 "use client";
 import Ads from "@/components/Ads";
+import Spinner from "@/components/Spinner";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -16,7 +17,7 @@ interface Product {
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [fragrancesProducts, setFragrancesProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -42,6 +43,13 @@ export default function Home() {
       setFragrancesProducts(fragrances);
     }
   }, [products]);
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <main className=" container">
@@ -53,7 +61,7 @@ export default function Home() {
         <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 gap-4 ">
           {fragrancesProducts.map((product: Product) => (
             <div key={product.id} className="">
-              <Link href={""}>
+              <Link href={`/fragrances/${product.id}`}>
                 <li className=" bg-gray-200 rounded-lg">
                   <img src={product.thumbnail} alt={product.title} />
                 </li>

@@ -1,13 +1,19 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Footer = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <footer className="flex flex-col  text-yellow-600 bg-gray-400">
+    <footer className="flex flex-col  text-yellow-600 ">
       <div className="flex xl:flex-row flex-col gap-[100px] items-center mx-auto px-2  py-20">
         <div className="flex flex-col gap-4">
           <p className="text-[45px] font-normal">

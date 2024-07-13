@@ -16,9 +16,9 @@ interface Product {
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [beautyProducts, setBeautyProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [sortOption, setSortOption] = useState<string>("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -34,13 +34,18 @@ export default function Home() {
     };
     fetchProducts();
   }, []);
-
-  useEffect(() => {
-    if (products.length > 0) {
-      const beauty = products.filter((beauty) => beauty.category === "beauty");
-      setBeautyProducts(beauty);
+  const handleSort = (option: string) => {
+    let sortedProducts = [...products];
+    if (option === "priceAsc") {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    } else if (option === "priceDesc") {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    } else if (option === "title") {
+      sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
     }
-  }, [products]);
+    setProducts(sortedProducts);
+    setSortOption(option);
+  };
 
   if (loading) {
     return <Spinner />;
@@ -50,14 +55,22 @@ export default function Home() {
     return <div>{error}</div>;
   }
   return (
-    <main className=" container">
-      {/* <div className="">
-        <Ads />
-      </div> */}
+    <main className=" container pt-2">
+      <div className="flex justify-end w-full mb-4">
+        <select
+          value={sortOption}
+          onChange={(e) => handleSort(e.target.value)}
+          className="bg-gray-200 p-2 rounded-lg"
+        >
+          <option value="">Sort By</option>
+          <option value="priceAsc">Price: Low to High</option>
+          <option value="priceDesc">Price: High to Low</option>
+          <option value="title">Title: A-Z</option>
+        </select>
+      </div>
       <div className="flex  flex-col gap-[100px] justify-center items-center mb-20">
-        {/* <p className="text-4xl font-semibold">Beauty</p> */}
         <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 gap-4 ">
-          {beautyProducts.map((product: Product) => (
+          {products.map((product: Product) => (
             <div key={product.id} className="">
               <Link href={`/beauty/${product.id}`}>
                 <li className=" bg-gray-200 rounded-lg">

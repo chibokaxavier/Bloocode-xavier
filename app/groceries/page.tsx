@@ -1,5 +1,7 @@
 "use client";
 import Ads from "@/components/Ads";
+import Spinner from "@/components/Spinner";
+import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -16,17 +18,17 @@ interface Product {
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [groceriesProducts, setGroceriesProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("https://dummyjson.com/products");
-        const result = await res.json();
-        setProducts(result.products);
+        const res = await axios.get("https://dummyjson.com/products");
+        setProducts(res.data.products);
       } catch (error) {
-        console.log(error);
+        console.error(error);
+        setError("Failed to fetch products");
       } finally {
         setLoading(false);
       }
@@ -42,7 +44,13 @@ export default function Home() {
       setGroceriesProducts(groceries);
     }
   }, [products]);
+  if (loading) {
+    return <Spinner />;
+  }
 
+  if (error) {
+    return <div>{error}</div>;
+  }
   return (
     <main className=" container">
       {/* <div className="">
@@ -53,7 +61,7 @@ export default function Home() {
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
           {groceriesProducts.map((product: Product) => (
             <div key={product.id} className="">
-              <Link href={""}>
+              <Link href={`/groceries/${product.id}`}>
                 <li className=" bg-gray-200 rounded-lg">
                   <img src={product.thumbnail} alt={product.title} />
                 </li>
