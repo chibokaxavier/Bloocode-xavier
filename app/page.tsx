@@ -4,7 +4,7 @@ import Spinner from "@/components/Spinner";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ReactHover } from "react-hover";
+import { Tooltip } from "react-tooltip";
 
 interface Product {
   title: string;
@@ -111,15 +111,23 @@ export default function Home() {
             </div>
           ))}
         </ul>
-        <div>
-          {/* <ReactHover options={optionsCursorTrueWithMargin}>
-            <Trigger type="trigger">
-              <TriggerComponent />
-            </Trigger>
-            <Hover type="hover">
-              <HoverComponent />
-            </Hover>
-          </ReactHover> */}
+        <div className="">
+          <a type="light" data-tooltip-id="my-tooltip">
+            h
+          </a>
+
+          <Tooltip
+            id="my-tooltip"
+            style={{
+              backgroundColor: "rgb(10, 27, 10)",
+              color: "#222",
+              borderRadius: "30px",
+            }}
+          >
+            <div className=" h-[300px] w-[300px] ">
+              <p>My name is chiboka xavier</p>
+            </div>
+          </Tooltip>
         </div>
         <Link href={"/products"}>
           <button className="bg-black text-white p-4 rounded-lg shadow-2xl w-[250px] h-[60px]">
