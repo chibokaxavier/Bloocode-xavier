@@ -81,7 +81,7 @@ export default function Home() {
           <select
             value={sortOption}
             onChange={(e) => handleSort(e.target.value)}
-            className="bg-gray-200 p-2 rounded-lg"
+            className="bg-gray-200  p-2 rounded-lg"
           >
             <option value="">Sort By</option>
             <option value="priceAsc">Price: Low to High</option>
@@ -110,7 +110,7 @@ export default function Home() {
             </div>
           ))}
         </ul>
-        <Link href={'/products'}>
+        <Link href={"/products"}>
           <button className="bg-black text-white p-4 rounded-lg shadow-2xl w-[250px] h-[60px]">
             View all products
           </button>

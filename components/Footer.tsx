@@ -5,13 +5,8 @@ import { FaInstagram } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 const Footer = () => {
-  useEffect(() => {
-    AOS.init();
-  }, []);
   return (
     <footer className="flex flex-col  text-yellow-600 ">
       <div className="flex xl:flex-row flex-col gap-[100px] items-center mx-auto px-2  py-20">
