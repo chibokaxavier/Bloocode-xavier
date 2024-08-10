@@ -4,6 +4,7 @@ import Spinner from "@/components/Spinner";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ReactHover } from "react-hover";
 
 interface Product {
   title: string;
@@ -110,6 +111,16 @@ export default function Home() {
             </div>
           ))}
         </ul>
+        <div>
+          {/* <ReactHover options={optionsCursorTrueWithMargin}>
+            <Trigger type="trigger">
+              <TriggerComponent />
+            </Trigger>
+            <Hover type="hover">
+              <HoverComponent />
+            </Hover>
+          </ReactHover> */}
+        </div>
         <Link href={"/products"}>
           <button className="bg-black text-white p-4 rounded-lg shadow-2xl w-[250px] h-[60px]">
             View all products
